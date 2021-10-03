@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+div {
+    padding-top: 15px;
+}
+
+#message {
+    margin: auto;
+}
+
+.nameClass {
+    color: rgb(0, 200, 10, 50%);
+}
+
+input {
+    padding: 5px;
+    border: 1px solid rgb(20, 40, 150, 20%);
+}
+
+.border-red-600 {
+    border: 1px solid red;
+}
