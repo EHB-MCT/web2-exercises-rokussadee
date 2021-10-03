@@ -37,7 +37,7 @@ window.onload = function() {
             });
         } else {
             msgContainer.innerHTML = `
-            <p>Hey <span class="nameClass">${data.name}</span>, you ordered a <span class="nameClass">${data.order}</span> via <span class="nameClass">${data.email}</span></p>
+            <p>The order for the customer <span class="nameClass">${data.name}</span> is the following: <span class="nameClass">${data.order}</span>. The customer may be notified by email: <span class="nameClass">${data.email}</span></p>
             `
             inputList.forEach(e => {
                 e.classList.remove('border-red-600');
