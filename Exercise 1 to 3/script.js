@@ -7,25 +7,41 @@ window.onload = function() {
     const form = document.getElementById('form')
     const dishesContainer = document.getElementById('order');
 
-    let dishes = [];
-    dishes.push({
-        id: 1,
-        name: 'Burger and french fries',
-        price: '18'
-    });
-    dishes.push({
-        id: 2,
-        name: 'Spaghetti Bolognaise',
-        price: '16'
-    });
-    dishes.push({
-        id: 3,
-        name: 'Vol au Vent',
-        price: '19'
-    });
+    class Order {
+        constructor(orderTitle, orderPrice, orderID) {
+            this.orderTitle = orderTitle;
+            this.orderPrice = orderPrice;
+            this.orderID = orderID;
+        }
+    }
+
+    let order1 = new Order('Burger and french fries', '16', 1);
+    let order2 =  new Order('Spaghetti Bolognaise', '16', 2)
+    let order3 =  new Order('Vol au Vent', '19', 3)
+
+    console.log(order1)
+    console.log(order2)
+    console.log(order3)
+
+    let dishes = [order1, order2, order3];
+    // dishes.push({
+    //     id: 1,
+    //     name: 'Burger and french fries',
+    //     price: '18'
+    // });
+    // dishes.push({
+    //     id: 2,
+    //     name: 'Spaghetti Bolognaise',
+    //     price: '16'
+    // });
+    // dishes.push({
+    //     id: 3,
+    //     name: 'Vol au Vent',
+    //     price: '19'
+    // });
 
     dishes.forEach((dish) => {
-        let htmlString = `<input type="radio" name="options" class="radio" id="${dish.id}" value="${dish.name}"> <label for="${dish.id}">${dish.name}, ${dish.price}</label>`;
+        let htmlString = `<input type="radio" name="options" class="radio" id="${dish.orderID}" value="${dish.orderTitle}"> <label for="${dish.orderID}">${dish.orderTitle}, ${dish.orderPrice}</label>`;
         dishesContainer.insertAdjacentHTML('beforeend', htmlString);
     });
 
