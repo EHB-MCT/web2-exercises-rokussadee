@@ -2,44 +2,76 @@
 
 window.onload = function() {
     console.log('loaded')
-    
-    class Pokemon {
-        constructor(name, image, types) {
-            this.name = name;
-            this.image = image;
-            this.types = types;
-        }
-    }
 
+    let emptyTeamText = 'You currently have no pokemon in your team.';
+    let addToTeamText = '';
+
+    document.getElementById('textContainer').innerHTML = emptyTeamText;
+    
+    let pokemonList = [];
+    
     fetch(' https://pokeapi.co/api/v2/pokemon?limit=151')
-    .then(response => (
-        response.json()
-    ))
-    .then(data => {
-        console.log(data)
-        let pokemonArray = data.results;
-        pokemonArray.forEach(pokemon => {
+    .then(response => response.json()
+    )
+    .then(data => {        
+        data.results.forEach(pokemon => {
             fetch(pokemon.url)
-            .then(response => (
-                response.json()
-            ))
-            .then(data => {
-                console.log(data);
-                new Pokemon(data.name, data.sprites.back_default)
+            .then(response => response.json())
+            .then(data2 => {
+                pokemonList.push(data2)
             });
         });
     })
-    let htmlString = `
-    <div>
-        <img src="" alt="">
-        <h2></h2>
-        <div class="typeContainer">
-            <h3></h3>
-            <h3></h3>
-        </div>
-    </div>
-    `
 
-    document.querySelector('body').insertAdjacentHTML('beforeend', htmlString) 
+    setTimeout(initList, 3000);
+
+    function initList() {
+        pokemonList.sort((a, b) => a.id - b.id);
     
+        console.log(pokemonList);
+    
+        let htmlString = '';
+        pokemonList.forEach((pokemon) => {
+
+            let typeArray = pokemon.types.map(typeObject => typeObject.type.name);
+            let typeListHTML = '';
+            typeArray.forEach((type) => {
+                typeListHTML += `<p class="${type} type">${type}</p>`;
+            });
+            
+            htmlString += `
+            <div class = "pokeCard">
+                <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+                <h3>${pokemon.name}</h3>
+                <div class="typeContainer">
+                    ${typeListHTML}
+                </div>
+                <button data-id="${pokemon.id}">Add</button>
+            </div>
+            `;
+        })
+        document.getElementById('listContainer').innerHTML = htmlString;
+
+        const buttonList = document.querySelectorAll('button');
+
+        buttonList.forEach((button, i) => {
+            button.addEventListener('click', function() {
+                document.getElementById('textContainer').innerHTML = `
+                Your team currently consists of the following pokemon:
+                <ul>
+                ${addToTeam(i)}
+                </ul>
+                `
+            });
+        });
+    }
+
+    function addToTeam(id) {
+        addToTeamText += `<li>
+        <span class = "${pokemonList[id].types[0].type.name} type">
+            ${pokemonList[id].name}</span>
+        </li>`;
+        return addToTeamText;
+    }
+
 }

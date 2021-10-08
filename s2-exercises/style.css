@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+} 
+
+.pokeCard {
+    border: 1px solid green;
+    flex: 1 1 400px;
+    margin: auto;
+}
+
+button {
+    margin: auto;
+    border-radius: 10px;
+    color: white;
+    width: 100px;
+    height: 50px;
+    background-color: rgb(56, 161, 221);
+    border: none;
+}
+
+.type {
+    color: white;
+    width: 60px;
+    padding: 5px 0 5px 0;
+    text-align: center;
+border-radius: 5px;
+}
+
+.grass {
+    background-color: rgb(29, 151, 29);
+    
+}
+.fire {
+    background-color: rgb(255, 123, 0);
+ 
+}
+.water {
+    background-color: rgb(52, 143, 196);
+
+}
+.poison {
+    background-color: rgb(130, 0, 156);
+
+}
+.flying {
+    background-color: rgb(120, 142, 163);
+ 
+}
+.bug {
+    background-color: rgb(125, 151, 29);
+
+}
+.electric {
+    background-color: rgb(255, 208, 0);
+
+}
+.ground {
+    background-color: rgb(151, 87, 14);
+
+}
